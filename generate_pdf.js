@@ -25,7 +25,8 @@ async function generatePDF(inputFile, outputFile) {
 }
 
 (async () => {
+  await generatePDF('kp.html', 'SteppeAI_КП_RU.pdf');
   await generatePDF('kp_en.html', 'SteppeAI_Proposal_EN.pdf');
   await generatePDF('kp_kz.html', 'SteppeAI_КП_KZ.pdf');
-  console.log('\n🎉 Оба PDF готовы!');
+  console.log('\n🎉 Все три PDF готовы!');
 })();
