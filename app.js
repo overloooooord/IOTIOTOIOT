@@ -2,7 +2,7 @@
 const T = {
   ru: {
     nav_about:"О проекте", nav_how:"Как работает", nav_benefits:"Преимущества",
-    nav_blog:"Блог", nav_investors:"Инвесторы", nav_contacts:"Контакты", nav_order:"Заказать",
+    nav_blog:"Блог", nav_news:"Новости", nav_investors:"Инвесторы", nav_contacts:"Контакты", nav_order:"Заказать",
     hero_title:'Управляй стадом с помощью <span>искусственного интеллекта</span>',
     hero_desc:"SteppeAI использует IoT-тэг на лидере стада и AI, чтобы контролировать движение, здоровье и безопасность животных — без пастуха и без физического забора.",
     badge1:"Управляет через лидера", badge2:"AI-забор на карте", badge3:"Анализ аномалий", badge4:"Уведомления в Telegram",
@@ -36,7 +36,8 @@ const T = {
     blog_label:"📰 БЛОГ", blog_title:"Наш путь и достижения", blog_sub:"Следите за развитием SteppeAI.",
     inv_label:"ИНВЕСТОРЫ И ПАРТНЁРЫ", inv_title:"Инвесторы и партнёры", inv_sub:"Мы открыты для стратегических партнёрств и инвестиций.",
     cont_label:"КОНТАКТЫ", cont_title:"Свяжитесь с нами", cont_sub:"Оставьте заявку — мы обсудим пилот и условия.",
-    tl_idea:"Идея", tl_proto:"Прототип", tl_pilot:"Пилот", tl_scale:"Масштаб"
+    tl_idea:"Идея", tl_proto:"Прототип", tl_pilot:"Пилот", tl_scale:"Масштаб",
+    news_label:"📡 НОВОСТИ АГРОСЕКТОРА", news_title:"Новости агросектора Казахстана", news_sub:"Актуальные события, тренды и аналитика в сфере животноводства и AgriTech."
   },
   en: {
     nav_about:"About", nav_how:"How it works", nav_benefits:"Benefits",
@@ -74,7 +75,8 @@ const T = {
     blog_label:"📰 BLOG", blog_title:"Our journey and achievements", blog_sub:"Follow SteppeAI's progress.",
     inv_label:"INVESTORS & PARTNERS", inv_title:"Investors & Partners", inv_sub:"We are open for strategic partnerships and investments.",
     cont_label:"CONTACTS", cont_title:"Contact us", cont_sub:"Leave a request — we'll discuss a pilot and terms.",
-    tl_idea:"Idea", tl_proto:"Prototype", tl_pilot:"Pilot", tl_scale:"Scale"
+    tl_idea:"Idea", tl_proto:"Prototype", tl_pilot:"Pilot", tl_scale:"Scale",
+    news_label:"📡 AGRI NEWS", news_title:"Agricultural sector news", news_sub:"Events, trends and analytics in livestock and AgriTech."
   },
   kz: {
     nav_about:"Жоба туралы", nav_how:"Қалай жұмыс істейді", nav_benefits:"Артықшылықтар",
@@ -112,7 +114,8 @@ const T = {
     blog_label:"📰 БЛОГ", blog_title:"Біздің жол және жетістіктер", blog_sub:"SteppeAI дамуын бақылаңыз.",
     inv_label:"ИНВЕСТОРЛАР ЖӘНЕ СЕРІКТЕСТЕР", inv_title:"Инвесторлар және серіктестер", inv_sub:"Стратегиялық серіктестік пен инвестициялар үшін ашықпыз.",
     cont_label:"БАЙЛАНЫС", cont_title:"Бізбен байланысыңыз", cont_sub:"Сұраныс қалдырыңыз — пилот пен шарттарды талқылаймыз.",
-    tl_idea:"Идея", tl_proto:"Прототип", tl_pilot:"Пилот", tl_scale:"Масштаб"
+    tl_idea:"Идея", tl_proto:"Прототип", tl_pilot:"Пилот", tl_scale:"Масштаб",
+    news_label:"📡 АГРОСЕКТОР ЖАҢАЛЫҚТАРЫ", news_title:"Қазақстан агросектор жаңалықтары", news_sub:"Мал шаруашылық және AgriTech саласындағы оқиғалар, трендтер мен талдау."
   }
 };
 

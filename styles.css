@@ -532,3 +532,44 @@ footer a:hover { text-decoration: underline; }
   transition: all 0.2s;
 }
 .team-link:hover { background: var(--primary); color: #fff; }
+
+/* ─── NEWS SECTION ─── */
+.news-section { background: var(--bg); }
+.news-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.news-card {
+  background: #fff; border-radius: 16px; padding: 1.75rem;
+  border: 1px solid #e2e8f0; transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  border-color: var(--primary);
+}
+.news-date {
+  font-size: 0.75rem; font-weight: 700; color: var(--primary);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem;
+}
+.news-card h3 {
+  font-size: 1.05rem; font-weight: 700; color: var(--text);
+  margin-bottom: 0.5rem; line-height: 1.4;
+}
+.news-card p {
+  font-size: 0.88rem; color: var(--text-sec); line-height: 1.6;
+  flex: 1; margin-bottom: 1rem;
+}
+.news-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 0.75rem; border-top: 1px solid #f1f5f9;
+}
+.news-tag {
+  display: inline-block; padding: 3px 10px; border-radius: 50px;
+  background: rgba(58,167,225,0.08); color: var(--primary);
+  font-size: 0.75rem; font-weight: 700;
+}
+.news-src {
+  font-size: 0.75rem; color: #94a3b8; font-weight: 600;
+}
