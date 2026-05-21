@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SteppeAI — Commercial Proposal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1e293b;line-height:1.6;background:#fff}
+@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{margin:0;size:A4}}
+.cover{min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#0f2645 40%,#1a3a5c 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:3rem;position:relative;overflow:hidden;page-break-after:always}
+.cover::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(58,167,225,0.15),transparent 70%)}
+.cover::after{content:'';position:absolute;bottom:-40%;left:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,0.1),transparent 70%)}
+.cover-logo{font-size:1.2rem;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:2rem;text-transform:uppercase}
+.cover h1{font-size:3.5rem;font-weight:900;line-height:1.1;margin-bottom:1rem;position:relative;z-index:1}
+.cover h1 span{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cover-sub{font-size:1.3rem;color:rgba(255,255,255,0.7);max-width:600px;margin-bottom:3rem;position:relative;z-index:1}
+.cover-meta{position:relative;z-index:1;display:flex;gap:2rem;flex-wrap:wrap;justify-content:center}
+.cover-meta div{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem 1.5rem;backdrop-filter:blur(10px)}
+.cover-meta .label{font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px}
+.cover-meta .val{font-size:1.1rem;font-weight:700;margin-top:0.25rem}
+.page{min-height:100vh;padding:4rem 3rem;page-break-after:always;position:relative}
+.page-num{position:absolute;bottom:2rem;right:3rem;font-size:0.8rem;color:#94a3b8;font-weight:600}
+.section-label{display:inline-block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#3AA7E1;margin-bottom:0.5rem}
+.page h2{font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;color:#0f172a}
+.page h2 span{color:#3AA7E1}
+.page-sub{font-size:1.05rem;color:#64748b;margin-bottom:2.5rem;max-width:700px}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.problem-card{background:#fef2f2;border:1px solid #fecaca;border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+.problem-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#ef4444}
+.problem-card .num{font-size:2.5rem;font-weight:900;color:rgba(239,68,68,0.15);position:absolute;top:0.5rem;right:1rem}
+.problem-card h3{font-size:1.1rem;font-weight:700;color:#991b1b;margin-bottom:0.3rem}
+.problem-card p{font-size:0.9rem;color:#7f1d1d}
+.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.solution-card{background:linear-gradient(135deg,#f0f9ff,#ecfdf5);border:1px solid #bae6fd;border-radius:16px;padding:1.5rem}
+.solution-card .step{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3AA7E1,#22c55e);color:#fff;font-weight:800;font-size:0.9rem;margin-bottom:0.75rem}
+.solution-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem}
+.solution-card p{font-size:0.88rem;color:#475569}
+.pricing-table{width:100%;border-collapse:collapse;margin:1.5rem 0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.pricing-table th{background:linear-gradient(135deg,#0f2645,#1a3a5c);color:#fff;padding:1rem 1.5rem;text-align:left;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px}
+.pricing-table td{padding:1rem 1.5rem;border-bottom:1px solid #e2e8f0;font-size:0.95rem}
+.pricing-table tr:nth-child(even){background:#f8fafc}
+.pricing-table tr:last-child td{border-bottom:none}
+.price-highlight{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;font-size:1.2rem}
+.compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.compare-table th{background:#0f2645;color:#fff;padding:0.8rem 1rem;text-align:center;font-size:0.8rem}
+.compare-table th:first-child{text-align:left}
+.compare-table td{padding:0.8rem 1rem;border-bottom:1px solid #e2e8f0;text-align:center;font-size:0.88rem}
+.compare-table td:first-child{text-align:left;font-weight:600}
+.compare-table tr:nth-child(even){background:#f8fafc}
+.compare-table .us{background:rgba(34,197,94,0.08)}
+.compare-table .us td{font-weight:600;color:#166534}
+.check{color:#22c55e;font-weight:700}
+.cross{color:#ef4444;font-weight:700}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2rem 0}
+.stat-box{text-align:center;padding:1.5rem;border-radius:16px;background:linear-gradient(135deg,#f0f9ff,#ecfdf5);border:1px solid #bae6fd}
+.stat-box .num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-box .label{font-size:0.8rem;color:#64748b;margin-top:0.25rem}
+.team-row{display:flex;gap:2rem;margin:2rem 0;justify-content:center}
+.team-card{text-align:center;padding:2rem;background:#f8fafc;border-radius:16px;border:1px solid #e2e8f0;flex:1;max-width:300px}
+.team-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #3AA7E1;margin-bottom:1rem}
+.team-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.2rem}
+.team-card .role{font-size:0.8rem;color:#fff;background:linear-gradient(135deg,#3AA7E1,#22c55e);display:inline-block;padding:3px 12px;border-radius:50px;font-weight:700;margin-bottom:0.5rem}
+.team-card p{font-size:0.85rem;color:#64748b}
+.cta-section{text-align:center;padding:4rem 3rem;background:linear-gradient(135deg,#0a1628,#1a3a5c);color:#fff;min-height:auto;page-break-after:avoid}
+.cta-section h2{font-size:2.5rem;font-weight:900;margin-bottom:1rem}
+.cta-section h2 span{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-contacts{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.cta-contact{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:1.5rem 2rem;text-align:center;min-width:200px}
+.cta-contact .icon{font-size:2rem;margin-bottom:0.5rem}
+.cta-contact h4{font-size:1rem;font-weight:700;margin-bottom:0.2rem}
+.cta-contact p{font-size:0.9rem;color:rgba(255,255,255,0.7)}
+.economy-box{background:linear-gradient(135deg,#ecfdf5,#f0fdf4);border:2px solid #86efac;border-radius:16px;padding:2rem;text-align:center;margin:2rem 0}
+.economy-box .big{font-size:3rem;font-weight:900;color:#166534}
+.economy-box p{font-size:1rem;color:#15803d;margin-top:0.3rem}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-logo">SteppeAI</div>
+  <h1>Commercial<br>Proposal<br><span>SteppeAI</span></h1>
+  <p class="cover-sub">Digital Shepherd — AI-powered livestock management platform via IoT leader tag</p>
+  <div class="cover-meta">
+    <div><div class="label">Date</div><div class="val">May 2026</div></div>
+    <div><div class="label">Website</div><div class="val">steppehub.space</div></div>
+    <div><div class="label">Contact</div><div class="val">@steppaimain</div></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-label">01 — Problem</div>
+  <h2>Why farmers <span>lose money</span></h2>
+  <p class="page-sub">Kazakhstan is one of the largest pastoral countries in the world. 70% of agricultural land is pasture. Yet farmers still use 100-year-old methods.</p>
+  <div class="problem-grid">
+    <div class="problem-card"><div class="num">01</div><h3>400,000 heads lost annually</h3><p>5% of livestock is lost every year — theft, predators, straying. Billions of tenge in damages nationwide.</p></div>
+    <div class="problem-card"><div class="num">02</div><h3>Fencing: $1,500–2,500/hectare</h3><p>Physical fencing is extremely expensive. For rotational grazing, stationary fences are useless.</p></div>
+    <div class="problem-card"><div class="num">03</div><h3>Shepherd: $300–600/month</h3><p>Human factor, fatigue, illness. A shepherd cannot watch 24/7 and lacks full situational awareness.</p></div>
+    <div class="problem-card"><div class="num">04</div><h3>No pasture data</h3><p>40% of land is used irrationally. No tools to show where herds grazed and what has recovered.</p></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="num">254K+</div><div class="label">Farms in Kazakhstan</div></div>
+    <div class="stat-box"><div class="num">1.6M</div><div class="label">Households</div></div>
+    <div class="stat-box"><div class="num">5%</div><div class="label">Annual losses</div></div>
+    <div class="stat-box"><div class="num">70%</div><div class="label">Land is pasture</div></div>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+<div class="page">
+  <div class="section-label">02 — Solution</div>
+  <h2>One tag — <span>full control</span></h2>
+  <p class="page-sub">SteppeAI leverages herd behavior: all animals follow the leader. A single IoT tag on the leader is enough.</p>
+  <div class="solution-grid">
+    <div class="solution-card"><div class="step">1</div><h3>Tag on the leader</h3><p>IoT device is attached to the herd leader (bull, ram, stallion). Battery life 6+ months.</p></div>
+    <div class="solution-card"><div class="step">2</div><h3>Virtual fence</h3><p>Farmer draws the pasture zone on a map. The system creates a "smart invisible fence" — AI-Fence.</p></div>
+    <div class="solution-card"><div class="step">3</div><h3>AI monitoring 24/7</h3><p>Coordinates every 30 seconds. AI analyzes movement, speed, stops, anomalies and escape risk.</p></div>
+    <div class="solution-card"><div class="step">4</div><h3>Instant alerts</h3><p>When crossing boundaries → push notification via Telegram/SMS. Farmer reacts in minutes, not hours.</p></div>
+  </div>
+  <div class="economy-box">
+    <div class="big">up to $2,000/year</div>
+    <p>Savings for a farmer with 100 heads by reducing shepherd costs and preventing losses</p>
+  </div>
+  <div class="page-num">03</div>
+</div>
+
+<div class="page">
+  <div class="section-label">03 — Pricing & Comparison</div>
+  <h2>Transparent <span>pricing</span></h2>
+  <p class="page-sub">One tag + subscription. ROI — less than 1 month.</p>
+  <table class="pricing-table">
+    <tr><th>Component</th><th>Description</th><th>Price</th></tr>
+    <tr><td>IoT Tag</td><td>GPS/LoRaWAN device for the herd leader. Battery 6+ months.</td><td><span class="price-highlight">$50</span></td></tr>
+    <tr><td>Subscription</td><td>Platform, AI analytics, alerts, maps</td><td><span class="price-highlight">$10/mo</span></td></tr>
+    <tr><td>Base Station</td><td>Coverage up to 2,000 ha. For large farms.</td><td>On request</td></tr>
+    <tr><td>Installation</td><td>On-site visit, setup, training</td><td>Free</td></tr>
+  </table>
+  <h2 style="font-size:1.6rem;margin-top:2.5rem">Comparison with <span>competitors</span></h2>
+  <table class="compare-table">
+    <tr><th>Parameter</th><th>Physical Fence</th><th>Shepherd</th><th>Vence (USA)</th><th>Halter (AUS)</th><th>SteppeAI 🇰🇿</th></tr>
+    <tr><td>Cost</td><td>$1,500–2,500/ha</td><td>$300–600/mo</td><td>$200–300/head</td><td>$250/head</td><td class="check">$50 for whole herd</td></tr>
+    <tr><td>Subscription</td><td>—</td><td>—</td><td>$20–50/mo/head</td><td>$30/mo/head</td><td class="check">$10/mo</td></tr>
+    <tr><td>24/7 Monitoring</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+    <tr><td>AI Analytics</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+    <tr><td>Offline Mode</td><td>—</td><td>—</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+    <tr><td>Central Asia delivery</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+    <tr class="us"><td>Total 100 heads/year</td><td>$150K+</td><td>$3,600–7,200</td><td>$14K–24K</td><td>$18K–24K</td><td>$170</td></tr>
+  </table>
+  <div class="page-num">04</div>
+</div>
+
+<div class="page" style="padding-bottom:0">
+  <div class="section-label">04 — Team</div>
+  <h2>Who's behind <span>SteppeAI</span></h2>
+  <p class="page-sub">Engineers and entrepreneurs building AgriTech in Kazakhstan.</p>
+  <div class="team-row">
+    <div class="team-card"><img src="eraly.png" alt="Eraly"><h3>Eraly Abutalifuly</h3><div class="role">Backend Developer</div><p>Server architecture, API, IoT & Telegram integration</p></div>
+    <div class="team-card"><img src="abylai.png" alt="Abylai"><h3>Keshubayev Abylai</h3><div class="role">IoT Engineer & Hustler</div><p>Hardware, base stations, LoRaWAN, 2,000 ha coverage</p></div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="section-label">🏆 Achievements</div>
+    <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stat-box"><div class="num">$600</div><div class="label">Investment from eGov creator</div></div>
+      <div class="stat-box"><div class="num">NURIS</div><div class="label">Hackathon — mentors & partners</div></div>
+      <div class="stat-box"><div class="num">48h</div><div class="label">First field test of the tag</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Ready for a <span>pilot</span>?</h2>
+  <p style="font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 2rem">We're looking for farms for a pilot launch. First 10 clients get free setup and 3 months subscription.</p>
+  <div class="cta-contacts">
+    <div class="cta-contact"><div class="icon">✈️</div><h4>Telegram</h4><p>@steppaimain</p></div>
+    <div class="cta-contact"><div class="icon">📱</div><h4>WhatsApp</h4><p>+7 705 874 62 68</p></div>
+    <div class="cta-contact"><div class="icon">🌐</div><h4>Website</h4><p>steppehub.space</p></div>
+  </div>
+</div>
+
+</body>
+</html>

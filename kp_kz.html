@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SteppeAI — Коммерциялық ұсыныс</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1e293b;line-height:1.6;background:#fff}
+@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{margin:0;size:A4}}
+.cover{min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#0f2645 40%,#1a3a5c 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:3rem;position:relative;overflow:hidden;page-break-after:always}
+.cover::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(58,167,225,0.15),transparent 70%)}
+.cover::after{content:'';position:absolute;bottom:-40%;left:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,0.1),transparent 70%)}
+.cover-logo{font-size:1.2rem;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:2rem;text-transform:uppercase}
+.cover h1{font-size:3.5rem;font-weight:900;line-height:1.1;margin-bottom:1rem;position:relative;z-index:1}
+.cover h1 span{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cover-sub{font-size:1.3rem;color:rgba(255,255,255,0.7);max-width:600px;margin-bottom:3rem;position:relative;z-index:1}
+.cover-meta{position:relative;z-index:1;display:flex;gap:2rem;flex-wrap:wrap;justify-content:center}
+.cover-meta div{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem 1.5rem;backdrop-filter:blur(10px)}
+.cover-meta .label{font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px}
+.cover-meta .val{font-size:1.1rem;font-weight:700;margin-top:0.25rem}
+.page{min-height:100vh;padding:4rem 3rem;page-break-after:always;position:relative}
+.page-num{position:absolute;bottom:2rem;right:3rem;font-size:0.8rem;color:#94a3b8;font-weight:600}
+.section-label{display:inline-block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#3AA7E1;margin-bottom:0.5rem}
+.page h2{font-size:2.2rem;font-weight:800;margin-bottom:0.5rem;color:#0f172a}
+.page h2 span{color:#3AA7E1}
+.page-sub{font-size:1.05rem;color:#64748b;margin-bottom:2.5rem;max-width:700px}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.problem-card{background:#fef2f2;border:1px solid #fecaca;border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+.problem-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#ef4444}
+.problem-card .num{font-size:2.5rem;font-weight:900;color:rgba(239,68,68,0.15);position:absolute;top:0.5rem;right:1rem}
+.problem-card h3{font-size:1.1rem;font-weight:700;color:#991b1b;margin-bottom:0.3rem}
+.problem-card p{font-size:0.9rem;color:#7f1d1d}
+.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.solution-card{background:linear-gradient(135deg,#f0f9ff,#ecfdf5);border:1px solid #bae6fd;border-radius:16px;padding:1.5rem}
+.solution-card .step{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3AA7E1,#22c55e);color:#fff;font-weight:800;font-size:0.9rem;margin-bottom:0.75rem}
+.solution-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem}
+.solution-card p{font-size:0.88rem;color:#475569}
+.pricing-table{width:100%;border-collapse:collapse;margin:1.5rem 0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.pricing-table th{background:linear-gradient(135deg,#0f2645,#1a3a5c);color:#fff;padding:1rem 1.5rem;text-align:left;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px}
+.pricing-table td{padding:1rem 1.5rem;border-bottom:1px solid #e2e8f0;font-size:0.95rem}
+.pricing-table tr:nth-child(even){background:#f8fafc}
+.pricing-table tr:last-child td{border-bottom:none}
+.price-highlight{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;font-size:1.2rem}
+.compare-table{width:100%;border-collapse:collapse;margin:1.5rem 0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.compare-table th{background:#0f2645;color:#fff;padding:0.8rem 1rem;text-align:center;font-size:0.8rem}
+.compare-table th:first-child{text-align:left}
+.compare-table td{padding:0.8rem 1rem;border-bottom:1px solid #e2e8f0;text-align:center;font-size:0.88rem}
+.compare-table td:first-child{text-align:left;font-weight:600}
+.compare-table tr:nth-child(even){background:#f8fafc}
+.compare-table .us{background:rgba(34,197,94,0.08)}
+.compare-table .us td{font-weight:600;color:#166534}
+.check{color:#22c55e;font-weight:700}
+.cross{color:#ef4444;font-weight:700}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2rem 0}
+.stat-box{text-align:center;padding:1.5rem;border-radius:16px;background:linear-gradient(135deg,#f0f9ff,#ecfdf5);border:1px solid #bae6fd}
+.stat-box .num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-box .label{font-size:0.8rem;color:#64748b;margin-top:0.25rem}
+.team-row{display:flex;gap:2rem;margin:2rem 0;justify-content:center}
+.team-card{text-align:center;padding:2rem;background:#f8fafc;border-radius:16px;border:1px solid #e2e8f0;flex:1;max-width:300px}
+.team-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #3AA7E1;margin-bottom:1rem}
+.team-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.2rem}
+.team-card .role{font-size:0.8rem;color:#fff;background:linear-gradient(135deg,#3AA7E1,#22c55e);display:inline-block;padding:3px 12px;border-radius:50px;font-weight:700;margin-bottom:0.5rem}
+.team-card p{font-size:0.85rem;color:#64748b}
+.cta-section{text-align:center;padding:4rem 3rem;background:linear-gradient(135deg,#0a1628,#1a3a5c);color:#fff;min-height:auto;page-break-after:avoid}
+.cta-section h2{font-size:2.5rem;font-weight:900;margin-bottom:1rem}
+.cta-section h2 span{background:linear-gradient(135deg,#3AA7E1,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-contacts{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.cta-contact{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:1.5rem 2rem;text-align:center;min-width:200px}
+.cta-contact .icon{font-size:2rem;margin-bottom:0.5rem}
+.cta-contact h4{font-size:1rem;font-weight:700;margin-bottom:0.2rem}
+.cta-contact p{font-size:0.9rem;color:rgba(255,255,255,0.7)}
+.economy-box{background:linear-gradient(135deg,#ecfdf5,#f0fdf4);border:2px solid #86efac;border-radius:16px;padding:2rem;text-align:center;margin:2rem 0}
+.economy-box .big{font-size:3rem;font-weight:900;color:#166534}
+.economy-box p{font-size:1rem;color:#15803d;margin-top:0.3rem}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-logo">SteppeAI</div>
+  <h1>Коммерциялық<br>ұсыныс<br><span>SteppeAI</span></h1>
+  <p class="cover-sub">Цифрлық бағушы — табын лидері арқылы IoT-тэг пен AI басқару платформасы</p>
+  <div class="cover-meta">
+    <div><div class="label">Күні</div><div class="val">Мамыр 2026</div></div>
+    <div><div class="label">Сайт</div><div class="val">steppehub.space</div></div>
+    <div><div class="label">Байланыс</div><div class="val">@steppaimain</div></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-label">01 — Мәселе</div>
+  <h2>Фермерлер неліктен <span>ақша жоғалтады</span></h2>
+  <p class="page-sub">Қазақстан — әлемдегі ең ірі жайылымдық елдердің бірі. Ауылшаруашылық жерлерінің 70% — жайылым. Бірақ фермерлер 100 жылдық әдістерді қолданады.</p>
+  <div class="problem-grid">
+    <div class="problem-card"><div class="num">01</div><h3>Жылына 400 000 бас жоғалады</h3><p>Мал басының 5% жыл сайын жоғалады — ұрлық, жыртқыштар, кетіп қалу. Ел бойынша миллиардтаған теңге шығын.</p></div>
+    <div class="problem-card"><div class="num">02</div><h3>Қоршау: 700K–1,2M ₸/гектар</h3><p>Физикалық қоршау — үлкен шығын. Ротациялық жайылымда стационарлық қоршаулар пайдасыз.</p></div>
+    <div class="problem-card"><div class="num">03</div><h3>Бағушы: 150–300K ₸/ай</h3><p>Адам факторы, шаршау, аурулар. Бағушы 24/7 бақылай алмайды және толық суретті көрмейді.</p></div>
+    <div class="problem-card"><div class="num">04</div><h3>Жайылым деректері жоқ</h3><p>Жерлердің 40% тиімсіз пайдаланылады. Қайда жайылғанын көрсететін құрал жоқ.</p></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="num">254K+</div><div class="label">ҚР-дағы фермалар</div></div>
+    <div class="stat-box"><div class="num">1,6M</div><div class="label">Қожалықтар</div></div>
+    <div class="stat-box"><div class="num">5%</div><div class="label">Жылдық шығын</div></div>
+    <div class="stat-box"><div class="num">70%</div><div class="label">Жер — жайылым</div></div>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+<div class="page">
+  <div class="section-label">02 — Шешім</div>
+  <h2>Бір тэг — <span>толық бақылау</span></h2>
+  <p class="page-sub">SteppeAI табын мінез-құлқын пайдаланады: барлық малдар лидерге ереді. Вожакқа бір IoT-тэг жеткілікті.</p>
+  <div class="solution-grid">
+    <div class="solution-card"><div class="step">1</div><h3>Лидерге тэг</h3><p>IoT-құрылғы табын лидеріне бекітіледі (бұқа, қошқар, айғыр). Батарея 6+ ай.</p></div>
+    <div class="solution-card"><div class="step">2</div><h3>Виртуалды қоршау</h3><p>Фермер картада жайылым аймағын сызады. Жүйе «ақылды көрінбейтін қоршау» жасайды — AI-Fence.</p></div>
+    <div class="solution-card"><div class="step">3</div><h3>AI-мониторинг 24/7</h3><p>Координаталар әр 30 секунд. AI қозғалысты, жылдамдықты, тоқтауларды, аномалияларды талдайды.</p></div>
+    <div class="solution-card"><div class="step">4</div><h3>Лезде ескертулер</h3><p>Шекарадан шыққанда → Telegram/SMS арқылы push-хабарлама. Фермер минуттарда жауап береді.</p></div>
+  </div>
+  <div class="economy-box">
+    <div class="big">жылына 1 000 000 ₸ дейін</div>
+    <p>100 басты фермер үшін бағушы шығындарын азайту және шығындарды болдырмау есебінен үнемдеу</p>
+  </div>
+  <div class="page-num">03</div>
+</div>
+
+<div class="page">
+  <div class="section-label">03 — Тарифтер және салыстыру</div>
+  <h2>Ашық <span>баға</span></h2>
+  <p class="page-sub">Бір тэг + жазылым. Өтелу — 1 айдан аз.</p>
+  <table class="pricing-table">
+    <tr><th>Компонент</th><th>Сипаттама</th><th>Құны</th></tr>
+    <tr><td>IoT-тэг</td><td>Табын лидеріне GPS/LoRaWAN құрылғы. Батарея 6+ ай.</td><td><span class="price-highlight">25 000 ₸</span></td></tr>
+    <tr><td>Жазылым</td><td>Платформа, AI-аналитика, ескертулер, карталар</td><td><span class="price-highlight">5 000 ₸/ай</span></td></tr>
+    <tr><td>Базалық станция</td><td>2000 га дейін қамту. Ірі шаруашылықтар үшін.</td><td>Сұраныс бойынша</td></tr>
+    <tr><td>Орнату</td><td>Шығу, баптау, оқыту</td><td>Тегін</td></tr>
+  </table>
+  <h2 style="font-size:1.6rem;margin-top:2.5rem"><span>Бәсекелестермен</span> салыстыру</h2>
+  <table class="compare-table">
+    <tr><th>Параметр</th><th>Физикалық қоршау</th><th>Бағушы</th><th>Vence (АҚШ)</th><th>Halter (Аустралия)</th><th>SteppeAI 🇰🇿</th></tr>
+    <tr><td>Құны</td><td>700K–1,2M ₸/га</td><td>150–300K ₸/ай</td><td>$200–300/бас</td><td>$250/бас</td><td class="check">25 000 ₸ бүкіл табынға</td></tr>
+    <tr><td>Жазылым</td><td>—</td><td>—</td><td>$20–50/ай/бас</td><td>$30/ай/бас</td><td class="check">5 000 ₸/ай</td></tr>
+    <tr><td>24/7 мониторинг</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+    <tr><td>AI-аналитика</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+    <tr><td>Оффлайн-режим</td><td>—</td><td>—</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+    <tr><td>ОА-ға жеткізу</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+    <tr class="us"><td>100 бас/жыл барлығы</td><td>70M+ ₸</td><td>1,8–3,6M ₸</td><td>7–12M ₸</td><td>9–12M ₸</td><td>85 000 ₸</td></tr>
+  </table>
+  <div class="page-num">04</div>
+</div>
+
+<div class="page" style="padding-bottom:0">
+  <div class="section-label">04 — Команда</div>
+  <h2><span>SteppeAI</span> артында кімдер тұр</h2>
+  <p class="page-sub">Қазақстанда AgriTech құрастыратын инженерлер мен кәсіпкерлер.</p>
+  <div class="team-row">
+    <div class="team-card"><img src="eraly.png" alt="Ералы"><h3>Ералы Абуталифулы</h3><div class="role">Backend Developer</div><p>Серверлік архитектура, API, IoT және Telegram интеграциясы</p></div>
+    <div class="team-card"><img src="abylai.png" alt="Абылай"><h3>Кешубаев Абылай</h3><div class="role">IoT Engineer & Hustler</div><p>Жабдық, базалық станциялар, LoRaWAN, 2000 га қамту</p></div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div class="section-label">🏆 Жетістіктер</div>
+    <div class="stats-row" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stat-box"><div class="num">300K ₸</div><div class="label">eGov жасаушысынан инвестиция</div></div>
+      <div class="stat-box"><div class="num">NURIS</div><div class="label">Хакатон — менторлар мен серіктестер</div></div>
+      <div class="stat-box"><div class="num">48 сағ</div><div class="label">Тэгтің алғашқы далалық сынағы</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2><span>Пилотқа</span> дайынсыз ба?</h2>
+  <p style="font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 2rem">Пилоттық іске қосу үшін фермерлік шаруашылықтарды іздейміз. Алғашқы 10 клиент орнату және 3 ай жазылымды тегін алады.</p>
+  <div class="cta-contacts">
+    <div class="cta-contact"><div class="icon">✈️</div><h4>Telegram</h4><p>@steppaimain</p></div>
+    <div class="cta-contact"><div class="icon">📱</div><h4>WhatsApp</h4><p>+7 705 874 62 68</p></div>
+    <div class="cta-contact"><div class="icon">🌐</div><h4>Сайт</h4><p>steppehub.space</p></div>
+  </div>
+</div>
+
+</body>
+</html>
