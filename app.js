@@ -137,7 +137,15 @@ function applyLang(lang) {
 }
 
 document.querySelectorAll('.lang-btn').forEach(b => {
-  b.addEventListener('click', () => applyLang(b.dataset.lang));
+  b.addEventListener('click', () => {
+    const lang = b.dataset.lang;
+    const pathname = window.location.pathname;
+    if (pathname.includes('/landing/')) {
+      window.location.href = lang + '.html';
+    } else {
+      window.location.href = 'landing/' + lang + '.html';
+    }
+  });
 });
 
 // ═══ INTERACTIVE COW DEMO ═══
