@@ -197,6 +197,31 @@
 </div>
 </section>
 
+<!-- TEAM -->
+<section id="team" class="team-section fade-in">
+<div class="container">
+  <span class="section-label">КОМАНДА</span>
+  <h2 class="section-title">Кто стоит за SteppeAI</h2>
+  <p class="section-sub">Наша команда — инженеры и предприниматели, которые делают AgriTech в Казахстане.</p>
+  <div class="team-grid">
+    <div class="team-member">
+      <div class="team-photo"><img src="eraly.png" alt="Ералы Абуталифулы"></div>
+      <h3>Ералы Абуталифулы</h3>
+      <p class="team-role">Backend Developer</p>
+      <p class="team-desc">Серверная архитектура, API, интеграция IoT и Telegram</p>
+      <a href="https://t.me/steppaimain" class="team-link">✈️ Telegram</a>
+    </div>
+    <div class="team-member">
+      <div class="team-photo placeholder">🔧</div>
+      <h3>Кешубаев Абылай</h3>
+      <p class="team-role">IoT Engineer & Hustler</p>
+      <p class="team-desc">Железо, базовые станции, LoRaWAN, покрытие 2000 га</p>
+      <a href="https://t.me/steppaimain" class="team-link">✈️ Telegram</a>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- CONTACTS -->
 <section id="contacts" class="contacts-section fade-in">
 <div class="container">
@@ -208,15 +233,16 @@
       <a href="https://t.me/steppaimain" class="contact-link"><div class="c-icon tg">✈️</div><div><h4>Telegram</h4><p>@steppaimain</p></div></a>
       <a href="https://wa.me/77058746268" class="contact-link"><div class="c-icon wa">📱</div><div><h4>WhatsApp</h4><p>+7 705 874 62 68</p></div></a>
     </div>
-    <div class="contact-form">
+    <div class="contact-form" id="leadForm">
       <h3>Заказать SteppeAI</h3>
-      <div class="form-group"><label>Имя</label><input type="text" placeholder="Ваше имя"></div>
-      <div class="form-group"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__"></div>
-      <div class="form-group"><label>Город</label><input type="text" placeholder="Ваш город"></div>
-      <div class="form-group"><label>Тип стада</label><select><option>КРС (коровы)</option><option>МРС (овцы/козы)</option><option>Лошади</option><option>Смешанное</option></select></div>
-      <div class="form-group"><label>Количество голов</label><input type="number" placeholder="100"></div>
-      <div class="form-group"><label>Комментарий</label><textarea rows="3" placeholder="Расскажите о вашем хозяйстве..."></textarea></div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem">Отправить заявку</button>
+      <div class="form-group"><label>Имя</label><input type="text" id="fName" placeholder="Ваше имя" required></div>
+      <div class="form-group"><label>Телефон</label><input type="tel" id="fPhone" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="form-group"><label>Город</label><input type="text" id="fCity" placeholder="Ваш город"></div>
+      <div class="form-group"><label>Тип стада</label><select id="fHerd"><option>КРС (коровы)</option><option>МРС (овцы/козы)</option><option>Лошади</option><option>Смешанное</option></select></div>
+      <div class="form-group"><label>Количество голов</label><input type="number" id="fHeads" placeholder="100"></div>
+      <div class="form-group"><label>Комментарий</label><textarea rows="3" id="fComment" placeholder="Расскажите о вашем хозяйстве..."></textarea></div>
+      <button class="btn btn-primary" id="btnSubmit" style="width:100%;justify-content:center;margin-top:0.5rem" onclick="submitLead()">Отправить заявку</button>
+      <div id="formMsg" style="margin-top:0.75rem;font-size:0.9rem;font-weight:600;display:none"></div>
     </div>
   </div>
 </div>

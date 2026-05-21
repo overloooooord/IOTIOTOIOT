@@ -3,7 +3,9 @@ const https = require('https');
 const TOKEN = '8669902687:AAGvUB-tXPKX7MFf7k8RanPrF74RveR4WTg';
 const API = `https://api.telegram.org/bot${TOKEN}`;
 
-let offset = 0;
+// Chat ID куда отправлять заявки (заполнится после /start)
+// Можно указать вручную свой chat_id
+let ADMIN_CHAT_ID = null;
 
 function request(method, body) {
   return new Promise((resolve, reject) => {
@@ -18,9 +20,7 @@ function request(method, body) {
     const req = https.request(opts, res => {
       let buf = '';
       res.on('data', c => buf += c);
-      res.on('end', () => {
-        try { resolve(JSON.parse(buf)); } catch { resolve(buf); }
-      });
+      res.on('end', () => { try { resolve(JSON.parse(buf)); } catch { resolve(buf); } });
     });
     req.on('error', reject);
     req.write(data);
@@ -29,12 +29,59 @@ function request(method, body) {
 }
 
 async function sendMessage(chatId, text) {
-  return request('sendMessage', {
-    chat_id: chatId,
-    text: text,
-    parse_mode: 'HTML'
-  });
+  return request('sendMessage', { chat_id: chatId, text, parse_mode: 'HTML' });
 }
+
+// ─── HTTP SERVER для приёма заявок с сайта ───
+const http = require('http');
+
+const server = http.createServer(async (req, res) => {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') { res.writeHead(200); res.end(); return; }
+
+  if (req.method === 'POST' && req.url === '/lead') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', async () => {
+      try {
+        const d = JSON.parse(body);
+        const msg =
+          `📩 <b>НОВАЯ ЗАЯВКА с сайта SteppeAI!</b>\n\n` +
+          `👤 <b>Имя:</b> ${d.name || '—'}\n` +
+          `📞 <b>Телефон:</b> ${d.phone || '—'}\n` +
+          `🏙 <b>Город:</b> ${d.city || '—'}\n` +
+          `🐄 <b>Тип стада:</b> ${d.herdType || '—'}\n` +
+          `🔢 <b>Кол-во голов:</b> ${d.heads || '—'}\n` +
+          `💬 <b>Комментарий:</b> ${d.comment || '—'}\n\n` +
+          `⏰ ${new Date().toLocaleString('ru-RU')}`;
+
+        // Отправить всем админам
+        if (ADMIN_CHAT_ID) {
+          await sendMessage(ADMIN_CHAT_ID, msg);
+        }
+
+        console.log(`[${new Date().toLocaleTimeString()}] 📩 Заявка: ${d.name} / ${d.phone}`);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        console.error('Error:', err.message);
+        res.writeHead(400);
+        res.end(JSON.stringify({ ok: false, error: err.message }));
+      }
+    });
+    return;
+  }
+
+  res.writeHead(404);
+  res.end('Not found');
+});
+
+// ─── POLLING для /start ───
+let offset = 0;
 
 async function poll() {
   try {
@@ -46,36 +93,20 @@ async function poll() {
         if (!msg) continue;
 
         const chatId = msg.chat.id;
-        const userId = msg.from.id;
-        const username = msg.from.username || '—';
         const firstName = msg.from.first_name || '';
         const text = msg.text || '';
 
-        console.log(`[${new Date().toLocaleTimeString()}] ${firstName} (@${username}) → ${text}`);
+        console.log(`[${new Date().toLocaleTimeString()}] ${firstName} → ${text}`);
 
         if (text === '/start') {
+          ADMIN_CHAT_ID = chatId;
           await sendMessage(chatId,
-            `🐄 <b>Привет, ${firstName}!</b>\n\n` +
-            `Добро пожаловать в <b>SteppeAI</b> — цифровой пастух для вашего стада.\n\n` +
-            `📋 <b>Ваши данные:</b>\n` +
-            `├ 🆔 User ID: <code>${userId}</code>\n` +
-            `├ 💬 Chat ID: <code>${chatId}</code>\n` +
-            `└ 👤 Username: @${username}\n\n` +
-            `🌐 Сайт: steppai.kz\n` +
-            `📩 Связь: @steppaimain`
+            `🐄 <b>SteppeAI Bot активирован!</b>\n\n` +
+            `Теперь все заявки с сайта будут приходить сюда.\n` +
+            `Chat ID: <code>${chatId}</code>\n\n` +
+            `Ждём заявок! 🚀`
           );
-        } else if (text === '/id') {
-          await sendMessage(chatId,
-            `🆔 <b>Ваш ID:</b> <code>${userId}</code>\n` +
-            `💬 <b>Chat ID:</b> <code>${chatId}</code>`
-          );
-        } else if (text === '/help') {
-          await sendMessage(chatId,
-            `📖 <b>Команды:</b>\n` +
-            `/start — приветствие + ваш ID\n` +
-            `/id — показать ID\n` +
-            `/help — помощь`
-          );
+          console.log(`✅ Admin chat ID set: ${chatId}`);
         }
       }
     }
@@ -85,17 +116,19 @@ async function poll() {
   setTimeout(poll, 500);
 }
 
-// Delete webhook first (in case it was set), then start polling
+const PORT = 3847;
+
+server.listen(PORT, () => {
+  console.log(`🐄 SteppeAI Bot + Webhook Server`);
+  console.log(`📡 HTTP сервер: http://localhost:${PORT}/lead`);
+  console.log(`🤖 Telegram polling запущен...`);
+  console.log(`\n⚡ Напишите /start боту чтобы привязать чат для заявок\n`);
+});
+
+// Удалить webhook и запустить polling
 (async () => {
-  console.log('🐄 SteppeAI Bot запускается...');
-  const del = await request('deleteWebhook', {});
-  console.log('Webhook deleted:', del.ok ? '✅' : '❌');
+  await request('deleteWebhook', {});
   const me = await request('getMe', {});
-  if (me.ok) {
-    console.log(`✅ Бот запущен: @${me.result.username}`);
-  } else {
-    console.error('❌ Ошибка подключения к боту');
-    process.exit(1);
-  }
+  if (me.ok) console.log(`✅ Бот: @${me.result.username}`);
   poll();
 })();

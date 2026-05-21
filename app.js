@@ -339,3 +339,57 @@ document.querySelectorAll('.lang-btn').forEach(b => {
     btnClear.disabled = true;
   });
 })();
+
+// ═══ FORM SUBMISSION → TELEGRAM BOT ═══
+const BOT_ENDPOINT = 'http://localhost:3847/lead';
+
+function submitLead() {
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const city = document.getElementById('fCity').value.trim();
+  const herdType = document.getElementById('fHerd').value;
+  const heads = document.getElementById('fHeads').value;
+  const comment = document.getElementById('fComment').value.trim();
+  const msgEl = document.getElementById('formMsg');
+  const btn = document.getElementById('btnSubmit');
+
+  if (!name || !phone) {
+    msgEl.style.display = 'block';
+    msgEl.style.color = '#f87171';
+    msgEl.textContent = '⚠️ Заполните имя и телефон!';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Отправляем...';
+
+  fetch(BOT_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, phone, city, herdType, heads, comment })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      msgEl.style.display = 'block';
+      msgEl.style.color = '#4ade80';
+      msgEl.textContent = '✅ Заявка отправлена! Мы скоро свяжемся.';
+      document.getElementById('fName').value = '';
+      document.getElementById('fPhone').value = '';
+      document.getElementById('fCity').value = '';
+      document.getElementById('fHeads').value = '';
+      document.getElementById('fComment').value = '';
+    } else {
+      throw new Error('Server error');
+    }
+  })
+  .catch(() => {
+    msgEl.style.display = 'block';
+    msgEl.style.color = '#facc15';
+    msgEl.textContent = '📩 Напишите нам в Telegram: @steppaimain';
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = 'Отправить заявку';
+  });
+}
